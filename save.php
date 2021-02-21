@@ -62,16 +62,20 @@ if (($_FILES['image']['name']!=""))
 
 		$src = imagecreatefromstring(file_get_contents($temp_name));
 
-		$exif = exif_read_data($src);
+		$exif = exif_read_data($temp_name);
 		if(!empty($exif['Orientation'])) {
 			switch($exif['Orientation']) {
 				case 8:
+					$temp = $width; $height = $width; $width = $height;
+					$temp = $thumbWidth; $thumbHeight = $thumbWidth; $thumbWidth = $thumbHeight;
 					$src = imagerotate($src,90,0);
 					break;
 				case 3:
 					$src = imagerotate($src,180,0);
 					break;
 				case 6:
+					$temp = $width; $height = $width; $width = $height;
+					$temp = $thumbWidth; $thumbHeight = $thumbWidth; $thumbWidth = $thumbHeight;
 					$src = imagerotate($src,-90,0);
 					break;
 			} 
