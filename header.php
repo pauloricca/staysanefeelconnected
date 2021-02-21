@@ -1,3 +1,7 @@
+<?
+	$app = $_GET['a'] || 1;
+	$location = $_GET['l'] || 1;
+?>
 <!doctype html>
 <html lang="en" class="">
  	<head>
@@ -22,4 +26,4 @@
 		<meta name="msapplication-config" content="/favicon/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
 	</head>
-	<body>
+	<body class="<?$bodyClasses?>">

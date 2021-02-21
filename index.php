@@ -1,8 +1,10 @@
-<?include __DIR__.'/header.php';
+<?
+$bodyClasses = 'rough-border';
+include __DIR__.'/header.php';
 
-$app = $_GET['a'] || 1;
-$location = $_GET['l'] || 1;
 $response = $_GET['response'];
+
+echo "<h1 class='blue-text'>Stay Sane,<br>Feel Connected</h1>";
 
 include __DIR__."/location-$location.php";
 

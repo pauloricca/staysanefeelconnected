@@ -1,5 +1,6 @@
 <?
 if(!count($_POST)) die();
+require __DIR__.'/utils.php';
 $app = $_POST['app'];
 $location = $_POST['location'];
 
@@ -16,7 +17,14 @@ if(!file_exists($path)) mkdir($path);
 
 $files = scandir($path);
 
-$randomFile = $files[rand(2, count($files)-1)];
+//select random response
+$responses = [];
+foreach($files as $file)
+{
+	if(!endsWith($file, '_') && !startsWith($file, '.')) $responses[] = $file;
+}
+
+$randomFile = $responses[rand(0, count($responses)-1)];
 
 $time = time();
 

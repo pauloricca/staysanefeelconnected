@@ -1,11 +1,14 @@
 body {
     background-color: #f5f1f0;
     font-size: 18px;
+    min-height: 100vh;
+}
+
+.rough-border {
     background-image: url('/assets/corner-top-left.gif'), url('/assets/corner-top-right.gif'), url('/assets/corner-bottom-left.gif'), url('/assets/corner-bottom-right.gif'), url('/assets/top.gif'), url('/assets/top.gif'), url('/assets/left.gif'), url('/assets/left.gif');
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat-x, repeat-x, repeat-y, repeat-y;
     background-size: 40px, 40px, 40px, 40px, auto 40px, auto 40px;
     background-position: top left, top right, bottom left, bottom right, top, bottom, left, right;
-    min-height: 100vh;
     padding: 30px 30px;
 }
 
@@ -48,6 +51,10 @@ input[type=submit] {
 	-webkit-appearance: none;
 }
 
+h1 {
+	font-size: 1.5em;
+}
+
 .blue-text {
 	color: #0502e1;
 	text-shadow: 1px 1px #ac2bc1, 3px 2px #36eaff;
@@ -78,4 +85,28 @@ img.response-image {
 .large-text {
     font-size: 1.5em;
     margin-bottom: 10px;
+}
+
+.entry {
+    width: 350px;
+}
+
+.entry.hidden {
+    opacity: 0.2;
+}
+
+.btn {
+    text-decoration: underline;
+    cursor: pointer;
+    width: 50px;
+}
+
+.btn:hover {
+	color: #0502e1;
+	text-shadow: -1px 1px #ac2bc1;
+}
+
+.entry.hidden .hide-btn, 
+.entry:not(.hidden) .show-btn {
+	display: none;
 }
