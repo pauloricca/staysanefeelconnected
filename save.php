@@ -61,7 +61,7 @@ if (($_FILES['image']['name']!=""))
 		}
 
 		$exif = exif_read_data($temp_name);
-		file_put_contents(__DIR__.'/exif.json', json_encode(print_r($exif, true), JSON_PRETTY_PRINT));
+		file_put_contents(__DIR__.'/exif.json', json_encode($exif, JSON_PRETTY_PRINT));
 		/*exit();
 		if(!empty($exif['Orientation'])) {
 		switch($exif['Orientation']) {
@@ -99,4 +99,4 @@ if (($_FILES['image']['name']!=""))
 
 file_put_contents("$path/$time", json_encode($_POST, true));
 
-//header("Location: /?l=$location&a=$app&response=$randomFile");
+header("Location: /?l=$location&a=$app&response=$randomFile");
