@@ -1,11 +1,31 @@
 <?
 require __DIR__.'/utils.php';
+
+$dataDir = __DIR__.'/data';
+
+$action = $_GET['action'];
+if(isset($action))
+{
+    $id = $_GET['id'];
+    switch($action)
+    {
+        case 'show':
+            rename("$dataDir/$id", trim("$dataDir/$id", '_'));
+            break;
+
+        case 'hide':
+            if(!endsWith($id, '_')) rename("$dataDir/$id", "$dataDir/$id".'_');
+            break;
+    }
+    exit();
+}
+
 include __DIR__.'/header.php';
 
 echo "<script src='/lib/imagesloaded.pkgd.min.js'></script>";
 echo "<script src='/lib/masonry.pkgd.min.js'></script>";
 
-$path = __DIR__."/data/$app/$location";
+$path = "$dataDir/$app/$location";
 $entries = scandir($path);
 //newest images first
 rsort($entries);
@@ -20,7 +40,7 @@ foreach($entries as $entry)
     $hidden = endsWith($entry, '_');
     $hiddenClass = $hidden ? 'hidden' : '';
 
-    echo "<div class='entry rough-border $hiddenClass' data-id='$entry'>";
+    echo "<div class='entry rough-border $hiddenClass' data-id='$app/$location/$entry'>";
 
     echo "<div class='meta-data'>" . gmdate("D, d M Y H:i", trim($entry, '_')) . "</div>";
     
@@ -55,6 +75,30 @@ echo "</div>";
                 itemSelector: '.entry'
             });
         });
+
+        $('.hide-btn').click(function(){
+            var $entry = $(this).closest('.entry');
+            var id = $entry.attr('data-id');
+            if(!id.endsWith('_'))
+            {
+                $.get( "?action=hide&id="+id, function( data ) {
+                    $entry.attr('data-id', id+'_');
+                    $entry.addClass('hidden');
+                });
+            }
+        })
+
+        $('.show-btn').click(function(){
+            var $entry = $(this).closest('.entry');
+            var id = $entry.attr('data-id');
+            if(id.endsWith('_'))
+            {
+                $.get( "?action=show&id="+id, function( data ) {
+                    $entry.attr('data-id', id.replace('_', ''))
+                    $entry.removeClass('hidden');
+                });
+            }
+        })
     });
 </script>
 
