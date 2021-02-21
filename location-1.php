@@ -25,4 +25,11 @@ else
 		<input type="hidden" name="app" value="<?=$app?>"/>
 		<input type="submit" value="send + receive"/>
 	</form>
+
+	<script>
+		$('input[type=submit]').click(function(){
+			$(this).css('opacity', '0.3');
+			$(this).css('pointer-events', 'none');
+		});
+	</script>
 <?}

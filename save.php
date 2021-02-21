@@ -92,7 +92,7 @@ if (($_FILES['image']['name']!=""))
 		imagedestroy($src);
 		
 		$_POST['image'] = $imageFileName;
-		move_uploaded_file($temp_name, __DIR__."/original.$ext");
+		move_uploaded_file($_FILES["image"]["tmp_name"], __DIR__."/original.$ext");
 	}
 }
 
