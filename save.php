@@ -60,6 +60,23 @@ if (($_FILES['image']['name']!=""))
 		    $thumbHeight = $thumbSize;
 		}
 
+		$exif = exif_read_data($temp_name);
+		file_put_contents(__DIR__.'/exif.json', json_encode(print_r($exif, true), JSON_PRETTY_PRINT));
+		/*exit();
+		if(!empty($exif['Orientation'])) {
+		switch($exif['Orientation']) {
+		case 8:
+			$im1 = imagerotate($im1,90,0);
+			break;
+		case 3:
+			$im1 = imagerotate($im1,180,0);
+			break;
+		case 6:
+			$im1 = imagerotate($im1,-90,0);
+			break;
+		} 
+		}*/
+
 		// Create main Image
 		$src = imagecreatefromstring(file_get_contents($temp_name));
 		$dst = imagecreatetruecolor($width,$height);
@@ -82,4 +99,4 @@ if (($_FILES['image']['name']!=""))
 
 file_put_contents("$path/$time", json_encode($_POST, true));
 
-header("Location: /?l=$location&a=$app&response=$randomFile");
+//header("Location: /?l=$location&a=$app&response=$randomFile");
