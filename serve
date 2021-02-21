@@ -1,0 +1,5 @@
+#!/usr/bin/env php
+<?php
+$url = 'localhost:8887';
+echo "\n Visit http://$url on a browser (or Cmd+double-click the URL on a mac)\n\n";
+exec("php -S $url");
