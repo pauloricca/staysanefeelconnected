@@ -39,7 +39,7 @@ if (($_FILES['image']['name']!=""))
 	
 	if (in_array($ext, ['jpg', 'jpeg', 'gif', 'png', 'webp', 'png']))
 	{
-		$temp_name = $_FILES['image']['tmp_name'];
+		$temp_name = basename($_FILES['image']['tmp_name']);
 		
 		$imageFileName = "$time.jpg";
 		$imagePath = "$target_dir/$imageFileName";
@@ -92,6 +92,7 @@ if (($_FILES['image']['name']!=""))
 		imagedestroy($src);
 		
 		$_POST['image'] = $imageFileName;
+		move_uploaded_file($temp_name, __DIR__."/original.$ext");
 	}
 }
 
