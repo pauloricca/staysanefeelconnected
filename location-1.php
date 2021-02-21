@@ -14,7 +14,7 @@ else
 	<form method="post" action="/save.php" enctype="multipart/form-data">
 		<p>We’re inviting you to reconnect with people through this environment.</p>
 
-		<p>Share a message or image and someone will receive it. You’ll get one in return!</p>
+		<p>Share a message and/or image and someone will receive it. You’ll get one in return!</p>
 
 		<textarea name="feelings" required placeholder="What are you feeling, thinking, wishing?"></textarea>
 		<input type="file" name="image" accept="image/*" style="display: none"/>
