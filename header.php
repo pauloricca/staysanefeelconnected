@@ -25,5 +25,15 @@
 		<meta name="msapplication-TileColor" content="#00aba9">
 		<meta name="msapplication-config" content="/favicon/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-HFY747Y9GB"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-HFY747Y9GB');
+		</script>
 	</head>
 	<body class="<?=$bodyClasses?>">
