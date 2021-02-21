@@ -60,38 +60,36 @@ if (($_FILES['image']['name']!=""))
 		    $thumbHeight = $thumbSize;
 		}
 
-		$exif = exif_read_data($temp_name);
-		file_put_contents(__DIR__.'/exif.json', json_encode($exif, JSON_PRETTY_PRINT));
-		/*exit();
+		$src = imagecreatefromstring(file_get_contents($temp_name));
+
+		$exif = exif_read_data($src);
 		if(!empty($exif['Orientation'])) {
-		switch($exif['Orientation']) {
-		case 8:
-			$im1 = imagerotate($im1,90,0);
-			break;
-		case 3:
-			$im1 = imagerotate($im1,180,0);
-			break;
-		case 6:
-			$im1 = imagerotate($im1,-90,0);
-			break;
-		} 
-		}*/
+			switch($exif['Orientation']) {
+				case 8:
+					$src = imagerotate($src,90,0);
+					break;
+				case 3:
+					$src = imagerotate($src,180,0);
+					break;
+				case 6:
+					$src = imagerotate($src,-90,0);
+					break;
+			} 
+		}
 
 		// Create main Image
-		$src = imagecreatefromstring(file_get_contents($temp_name));
 		$dst = imagecreatetruecolor($width,$height);
 		imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
-		imagedestroy($src);
 		imagejpeg($dst, $imagePath);
 		imagedestroy($dst);
 
 		//Create Thumb
-		$src = imagecreatefromstring(file_get_contents($temp_name));
 		$dst = imagecreatetruecolor($thumbWidth,$thumbHeight);
 		imagecopyresampled($dst,$src,0,0,0,0,$thumbWidth,$thumbHeight,$size[0],$size[1]);
-		imagedestroy($src);
 		imagejpeg($dst, $thumbPath);
 		imagedestroy($dst);
+
+		imagedestroy($src);
 		
 		$_POST['image'] = $imageFileName;
 	}
