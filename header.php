@@ -26,4 +26,4 @@
 		<meta name="msapplication-config" content="/favicon/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
 	</head>
-	<body class="<?$bodyClasses?>">
+	<body class="<?=$bodyClasses?>">
