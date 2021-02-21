@@ -39,7 +39,7 @@ if (($_FILES['image']['name']!=""))
 	
 	if (in_array($ext, ['jpg', 'jpeg', 'gif', 'png', 'webp', 'png']))
 	{
-		$temp_name = basename($_FILES['image']['tmp_name']);
+		$temp_name = $_FILES['image']['tmp_name'];
 		
 		$imageFileName = "$time.jpg";
 		$imagePath = "$target_dir/$imageFileName";
@@ -66,16 +66,18 @@ if (($_FILES['image']['name']!=""))
 		if(!empty($exif['Orientation'])) {
 			switch($exif['Orientation']) {
 				case 8:
-					$temp = $width; $height = $width; $width = $height;
-					$temp = $thumbWidth; $thumbHeight = $thumbWidth; $thumbWidth = $thumbHeight;
+					$temp = $width; $width = $height; $height = $temp;
+					$temp = $thumbWidth; $thumbWidth = $thumbHeight; $thumbHeight = $temp;
+					$temp = $size[0]; $size[0] = $size[1]; $size[1] = $temp;
 					$src = imagerotate($src,90,0);
 					break;
 				case 3:
 					$src = imagerotate($src,180,0);
 					break;
 				case 6:
-					$temp = $width; $height = $width; $width = $height;
-					$temp = $thumbWidth; $thumbHeight = $thumbWidth; $thumbWidth = $thumbHeight;
+					$temp = $width; $width = $height; $height = $temp;
+					$temp = $thumbWidth; $thumbWidth = $thumbHeight; $thumbHeight = $temp;
+					$temp = $size[0]; $size[0] = $size[1]; $size[1] = $temp;
 					$src = imagerotate($src,-90,0);
 					break;
 			} 
@@ -96,7 +98,7 @@ if (($_FILES['image']['name']!=""))
 		imagedestroy($src);
 		
 		$_POST['image'] = $imageFileName;
-		move_uploaded_file($_FILES["image"]["tmp_name"], __DIR__."/original.$ext");
+		//move_uploaded_file($_FILES["image"]["tmp_name"], __DIR__."/original.$ext");
 	}
 }
 

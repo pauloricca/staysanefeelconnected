@@ -28,6 +28,7 @@ else
 
 	<script>
 		$('input[type=submit]').click(function(){
+			$(this).attr('value', 'sending...');
 			$(this).css('opacity', '0.3');
 			$(this).css('pointer-events', 'none');
 		});
