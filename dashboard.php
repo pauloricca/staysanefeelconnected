@@ -20,6 +20,7 @@ if(isset($action))
     exit();
 }
 
+$pageTitle = "SSFC - The Dashboard";
 include __DIR__.'/header.php';
 
 echo "<script src='/lib/imagesloaded.pkgd.min.js'></script>";
