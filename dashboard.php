@@ -55,7 +55,7 @@ foreach($entries as $entry)
 
     if($entryData['image'])
     {
-        echo "<img class='response-image' src='/data/uploads/thumbs/$entryData[image]'/>";
+        echo "<a href='/data/uploads/$entryData[image]' target='_blank'><img class='response-image' src='/data/uploads/thumbs/$entryData[image]'/></a>";
     }
     echo "<div class='hide-btn btn'>hide</div>";
     echo "<div class='show-btn btn'>show</div>";
